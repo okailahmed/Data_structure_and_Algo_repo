@@ -15,8 +15,8 @@ int main()
     *num1 =22;
 
 
-    cout<<num1<<endl;
-    cout<<num2<<endl;
+    cout<<*num1<<endl;
+    cout<<*num2<<endl;
 
     return 0;
 }
