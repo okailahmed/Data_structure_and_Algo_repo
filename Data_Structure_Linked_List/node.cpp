@@ -31,17 +31,16 @@ public:
         length = 1;
     }
 
-//this is a destructor 
+    // this is a destructor
     ~LinkedList()
     {
-        Node *temp= head;
-        while(head)
+        Node *temp = head;
+        while (head)
         {
             head = head->next;
             delete head;
             temp = head;
         }
-
     }
 
     void printList()
@@ -57,42 +56,48 @@ public:
 
     void append(int value)
     {
-        Node *newNode = new Node(value);  // this line mean we create new node 
+        Node *newNode = new Node(value); // this line mean we create new node
 
-        if(length == 0 )
+        if (length == 0)
         {
             head = newNode;
             tail = newNode;
-        }else{
+        }
+        else
+        {
             tail->next = newNode;
             tail = newNode;
         }
-        length ++;
-        
+        length++;
     }
 
     void delete_last()
     {
-        if(length == 0)
+        if (length == 0)
         {
             return;
         }
 
         Node *temp = head;
-        Node *pre = head;
-        while(temp->next)
-        {
-            pre = temp;
-            temp = temp->next;
-        }
-        tail = pre;
-        tail->next= nullptr;
-        length --;
-        if(length == 0)
+        if (length == 0)
         {
             head = nullptr;
             tail = nullptr;
         }
+        else
+        {
+            Node *pre = head;
+
+            while (temp->next)
+            {
+                pre = temp;
+                temp = temp->next;
+            }
+            tail = pre;
+            tail->next = nullptr;
+        }
+        length--;
+
         delete temp;
     }
 
@@ -114,17 +119,14 @@ public:
 
 int main()
 {
-    LinkedList * myLinkedList = new LinkedList(4);
-
+    LinkedList *myLinkedList = new LinkedList(4);
 
     // myLinkedList->get_head();
     // myLinkedList->get_tail();
     // myLinkedList->get_length();
 
-    
-
     myLinkedList->append(6);
     myLinkedList->printList();
-    
+
     return 0;
 }
