@@ -3,55 +3,32 @@
 using namespace std;
 
 
-	// CREATE NODE CLASS HERE //
-	//                        //
-	//                        //
-	//                        //
-	//                        //
-	////////////////////////////
-class Node{
+class Node { 
     public:
         int value;
-        Node *next;
+        Node* next;
 
-        Node(int value)
-        {
+        Node(int value) {
             this->value = value;
-            this->next  = nullptr;
+            next = nullptr;
         }
-};
-
-
+}; 
 
 
 class LinkedList {
     private:
-		// CREATE MEMBER VARIABLES HERE //
-		//                              //
-		//                              //
-		//                              //
-		//                              //
-		//////////////////////////////////
-        Node *head;
-        Node *tail;
+        Node* head;
+        Node* tail;
         int length;
 
     public:
-		// CREATE LL CONSTRUCTOR HERE //
-		//                            //
-		//                            //
-		//                            //
-		//                            //
-		////////////////////////////////
-        LinkedList(int vlaue)
-        {
-            Node *newNode = new Node(vlaue);
+        LinkedList(int value) {
+            Node* newNode = new Node(value);
             head = newNode;
             tail = newNode;
-            length=1 ;
+            length = 1;
         }
 
-    
         ~LinkedList() {
             Node* temp = head;
             while (head) {
@@ -89,32 +66,59 @@ class LinkedList {
             cout << "Length: " << length << endl;
         }
 
+       
+		// WRITE APPEND MEMBER FUNCTION HERE //
+		//                                   //
+		//                                   //
+	    //                                   //
+	    //                                   //
+	    //                                   //
+	    ///////////////////////////////////////
+        void append(int value)
+        {
+            Node *newNode = new Node(value);
+
+            if(length == 0)
+            {
+                head = newNode;
+                tail = newNode;
+            }else{
+                tail->next = newNode;
+                tail = newNode;
+            }
+            length ++;
+        }
+	    
 };
 
 
 
 int main() {
         
-    LinkedList* myLinkedList = new LinkedList(4);
+    LinkedList* myLinkedList = new LinkedList(1);
+
+    myLinkedList->append(2);
+    myLinkedList->append(9);
 
     myLinkedList->getHead();
     myLinkedList->getTail();
     myLinkedList->getLength();
-    
-    cout << "\nLinked List:\n";
-    myLinkedList->printList();
+
+    cout << endl << "Linked List:" << endl;
+    myLinkedList->printList();  
+
 
     /*  
         EXPECTED OUTPUT:
     	----------------
-        Head: 4
-        Tail: 4
-        Length: 1
+        Head: 1
+        Tail: 2
+        Length: 2
 
         Linked List:
-        4
+        1
+        2
 
     */
-       
+        
 }
-
